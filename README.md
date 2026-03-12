@@ -604,10 +604,10 @@ ip route add default via 192.168.1.1
 
 `pc2.startup`:
 
-````bash
+```bash
 ip addr add 10.0.0.2/24 dev eth0
 ip route add default via 10.0.0.1
-````
+```
 # PARTE 3: COMANDI E CONFIGURAZIONE BASE DEI DEVICES LINUX
 
 I device Katharà sono container Linux con strumenti di rete preinstallati (`iproute2`).
@@ -620,10 +620,12 @@ I device Katharà sono container Linux con strumenti di rete preinstallati (`ipr
 
 ### `ip addr` — Gestione indirizzi IP
 
-
+```bash
 ip addr [show [DEV]]         # mostra indirizzi (tutti, o solo DEV)
 ip addr add IP/MASK dev DEV  # assegna un indirizzo alla interfaccia DEV
 ip addr del IP/MASK dev DEV  # rimuove un indirizzo dalla interfaccia DEV
+```
+
 
 **Esempi:**
 
@@ -1102,6 +1104,7 @@ ip route add 200.1.1.0/24 via 10.0.0.2 dev eth1
 > Le prime due righe assegnano indirizzi IP alle interfacce (aggiungendo implicitamente le rotte directly connected). La terza aggiunge una rotta statica verso una rete non direttamente connessa, specificando come next-hop l'indirizzo del router adiacente sull'altro lato del link.
 
 # PARTE 6: WIRESHARK IN KATHARà
+
 Wireshark è un analizzatore di rete (sniffer) che cattura e ispeziona il traffico su un'interfaccia di rete. In Katharà viene eseguito come device dedicato, accessibile tramite browser dalla macchina host.
 
 ---
