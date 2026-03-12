@@ -8,31 +8,31 @@
         "type": "tabs",
         "children": [
           {
-            "id": "0de1da9d0985a02a",
+            "id": "ead89924bf73ca6e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "laboratorio/1_Network scenario.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "1_Network scenario"
             }
           },
           {
-            "id": "3d3ab8057dcac353",
+            "id": "6c96ff2251253df7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Dominio di collisione.md",
+                "file": "Comandi.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Dominio di collisione"
+              "title": "Comandi"
             }
           }
         ],
@@ -109,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Dominio di collisione.md",
+                "file": "Comandi.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -119,7 +119,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Riferimenti a Dominio di collisione"
+              "title": "Riferimenti a Comandi"
             }
           },
           {
@@ -128,12 +128,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Dominio di collisione.md",
+                "file": "Comandi.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Collegamenti in uscita da Dominio di collisione"
+              "title": "Collegamenti in uscita da Comandi"
             }
           },
           {
@@ -171,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Dominio di collisione.md",
+                "file": "Comandi.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Struttura di Dominio di collisione"
+              "title": "Struttura di Comandi"
             }
           }
         ]
@@ -198,9 +198,18 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "3d3ab8057dcac353",
+  "active": "6c96ff2251253df7",
   "lastOpenFiles": [
+    "laboratorio/3_Esercitazione layer 3.md",
+    "Comandi.md",
+    "laboratorio/2_Esercitazione layer 2.md",
+    "laboratorio/1_Network scenario.md",
+    "laboratorio",
+    "1_Dominio di collisione.md",
     "README.md",
-    "Dominio di collisione.md"
+    "5_Wireshark in khatara.md",
+    "4_Configurazione e comandi dei dispositivi di rete.md",
+    "3_CONDIVISIONE DI FILE TRA HOST E DEVICES.md",
+    "2_Struttura delle cartelle e dei laboratori.md"
   ]
 }
