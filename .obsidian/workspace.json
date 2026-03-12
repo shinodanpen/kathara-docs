@@ -27,16 +27,58 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Comandi.md",
+                "file": "1_Dominio di collisione.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Comandi"
+              "title": "1_Dominio di collisione"
+            }
+          },
+          {
+            "id": "4c351eedfea0ba27",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "laboratorio/2_Esercitazione layer 2.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2_Esercitazione layer 2"
+            }
+          },
+          {
+            "id": "2ceaae3a1dcf7304",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "laboratorio/Laboratorio 2 – Kathará One Bridge.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Laboratorio 2 – Kathará One Bridge"
+            }
+          },
+          {
+            "id": "103df4a176e09a7e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2_Struttura delle cartelle e dei laboratori.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2_Struttura delle cartelle e dei laboratori"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -109,7 +151,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Comandi.md",
+                "file": "2_Struttura delle cartelle e dei laboratori.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -119,7 +161,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Riferimenti a Comandi"
+              "title": "Riferimenti a 2_Struttura delle cartelle e dei laboratori"
             }
           },
           {
@@ -128,12 +170,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Comandi.md",
+                "file": "2_Struttura delle cartelle e dei laboratori.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Collegamenti in uscita da Comandi"
+              "title": "Collegamenti in uscita da 2_Struttura delle cartelle e dei laboratori"
             }
           },
           {
@@ -171,13 +213,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Comandi.md",
+                "file": "2_Struttura delle cartelle e dei laboratori.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Struttura di Comandi"
+              "title": "Struttura di 2_Struttura delle cartelle e dei laboratori"
             }
           }
         ]
@@ -198,18 +240,21 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "6c96ff2251253df7",
+  "active": "103df4a176e09a7e",
   "lastOpenFiles": [
     "laboratorio/3_Esercitazione layer 3.md",
-    "Comandi.md",
+    "laboratorio/Laboratorio 3 – Configurazione Base IPv4, Ping, Traceroute e ARP.md",
+    "laboratorio/Laboratorio 2 – Kathará One Bridge.md",
     "laboratorio/2_Esercitazione layer 2.md",
+    "laboratorio/Laboratorio 1 - Installazione.md",
+    "2_Struttura delle cartelle e dei laboratori.md",
+    "Comandi.md",
+    "1_Dominio di collisione.md",
     "laboratorio/1_Network scenario.md",
     "laboratorio",
-    "1_Dominio di collisione.md",
     "README.md",
     "5_Wireshark in khatara.md",
     "4_Configurazione e comandi dei dispositivi di rete.md",
-    "3_CONDIVISIONE DI FILE TRA HOST E DEVICES.md",
-    "2_Struttura delle cartelle e dei laboratori.md"
+    "3_CONDIVISIONE DI FILE TRA HOST E DEVICES.md"
   ]
 }
