@@ -1,6 +1,6 @@
 # Premessa — Concetti Base
 
-← [[01_INDEX]]
+← [01_INDEX](01_INDEX.md)
 
 ---
 
@@ -8,7 +8,7 @@
 
 Un **device** in Katharà è un container Docker che emula un dispositivo di rete (PC, router, switch, ecc.). Può avere un numero arbitrario di interfacce di rete virtuali (`eth0`, `eth1`, ...).
 
-Il comportamento del device non dipende dall'immagine Docker usata, ma dai comandi nel file `.startup`. La stessa immagine `kathara/base` può essere usata come PC, router o bridge — cambia solo la configurazione. Vedi [[04_Struttura_Laboratorio#immagini-docker]] per le immagini disponibili.
+Il comportamento del device non dipende dall'immagine Docker usata, ma dai comandi nel file `.startup`. La stessa immagine `kathara/base` può essere usata come PC, router o bridge — cambia solo la configurazione. Vedi [04_Struttura_Laboratorio](04_Struttura_Laboratorio.md#immagini-docker) per le immagini disponibili.
 
 ---
 
@@ -27,4 +27,4 @@ kathara vstart -n pc2 --eth 0:A
 
 > **Nota:** Il nome "collision domain" viene dalla terminologia Ethernet classica, dove i dispositivi collegati allo stesso mezzo fisico condividevano il canale e potevano generare collisioni. In Katharà è semplicemente l'etichetta che identifica una rete virtuale.
 
-I collision domain si collegano ai device tramite [[04_Struttura_Laboratorio#labconf|lab.conf]] (per gli scenari) oppure direttamente con `--eth` in [[03_Comandi_Kathara#vstart|kathara vstart]].
+I collision domain si collegano ai device tramite [lab.conf](04_Struttura_Laboratorio.md#labconf) (per gli scenari) oppure direttamente con `--eth` in [kathara vstart](03_Comandi_Kathara.md#vstart).

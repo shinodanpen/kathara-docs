@@ -1,16 +1,16 @@
 # Router Linux
 
-← [[07_Dispositivi_Rete]] | [[01_INDEX]]
+← [07_Dispositivi_Rete](07_Dispositivi_Rete.md) | [01_INDEX](01_INDEX.md)
 
-Un router Linux opera a **livello 3** (IP). A differenza del [[07a_Bridge_Linux|bridge]] che lavora sui MAC address a livello 2, il router prende decisioni di forwarding basandosi sugli indirizzi IP e su una tabella di routing.
+Un router Linux opera a **livello 3** (IP). A differenza del [bridge](07a_Bridge_Linux.md) che lavora sui MAC address a livello 2, il router prende decisioni di forwarding basandosi sugli indirizzi IP e su una tabella di routing.
 
-L'immagine `kathara/base` è sufficiente. Il comportamento da router si ottiene interamente tramite i comandi nel file `.startup`. Vedi [[04_Struttura_Laboratorio#immagini-docker]].
+L'immagine `kathara/base` è sufficiente. Il comportamento da router si ottiene interamente tramite i comandi nel file `.startup`. Vedi [04_Struttura_Laboratorio](04_Struttura_Laboratorio.md#immagini-docker).
 
 ---
 
 ## Configurazione delle interfacce
 
-Ogni interfaccia del router deve ricevere un indirizzo IP con la relativa netmask. Per i comandi di base vedi anche [[06_Comandi_Linux#interfacce-di-rete|ip addr]].
+Ogni interfaccia del router deve ricevere un indirizzo IP con la relativa netmask. Per i comandi di base vedi anche [ip addr](06_Comandi_Linux.md#interfacce-di-rete).
 
 ```bash
 ip address add IP/MASK dev DEV
@@ -27,7 +27,7 @@ ip address add 10.0.0.1/30 dev eth1
 
 ## Abilitare il forwarding IP
 
-Un device Linux di default **non** inoltra pacchetti tra interfacce diverse. Per farlo funzionare come router, il forwarding IP va abilitato esplicitamente. Il modo più pulito è tramite [[04_Struttura_Laboratorio#labconf|lab.conf]]:
+Un device Linux di default **non** inoltra pacchetti tra interfacce diverse. Per farlo funzionare come router, il forwarding IP va abilitato esplicitamente. Il modo più pulito è tramite [lab.conf](04_Struttura_Laboratorio.md#labconf):
 
 ```
 r1[sysctl]="net.ipv4.ip_forward=1"
@@ -60,7 +60,7 @@ ip route add default via GATEWAY
 ip route add default via 192.168.1.1
 ```
 
-Per i comandi generali sulla routing table vedi [[06_Comandi_Linux#routing|ip route]].
+Per i comandi generali sulla routing table vedi [ip route](06_Comandi_Linux.md#routing).
 
 ---
 
@@ -138,4 +138,4 @@ r1[mem]="256m"
 r1[sysctl]="net.ipv4.ip_forward=1"
 ```
 
-Vedi [[04_Struttura_Laboratorio#labconf|lab.conf]] per le altre opzioni disponibili.
+Vedi [lab.conf](04_Struttura_Laboratorio.md#labconf) per le altre opzioni disponibili.

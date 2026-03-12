@@ -1,13 +1,13 @@
 # Comandi e Parametri di Katharà
 
-← [[01_INDEX]]
+← [01_INDEX](01_INDEX.md)
 
-Katharà è un emulatore di reti basato su container Docker. Ogni dispositivo è un container; ogni collegamento è una rete virtuale chiamata [[02_Premessa#collision-domain|collision domain]]. È il successore spirituale di Netkit, con cui è cross-compatibile.
+Katharà è un emulatore di reti basato su container Docker. Ogni dispositivo è un container; ogni collegamento è una rete virtuale chiamata [collision domain](02_Premessa.md#collision-domain). È il successore spirituale di Netkit, con cui è cross-compatibile.
 
 I comandi si dividono in tre famiglie:
 
 - **v-comandi** (`vstart`, `vclean`, `vconfig`): gestione di singoli device
-- **l-comandi** (`lstart`, `lclean`, `linfo`, `lrestart`, `lconfig`): gestione di scenari di rete completi (vedi [[04_Struttura_Laboratorio]])
+- **l-comandi** (`lstart`, `lclean`, `linfo`, `lrestart`, `lconfig`): gestione di scenari di rete completi (vedi [04_Struttura_Laboratorio](04_Struttura_Laboratorio.md))
 - **comandi globali** (`connect`, `exec`, `wipe`, `list`, `settings`, `check`)
 
 ## Sintassi generale
@@ -31,14 +31,14 @@ Avvia un nuovo device con il nome specificato. I nomi devono essere unici per ut
 | Opzione | Descrizione |
 |---|---|
 | `-n NOME` | Nome del device (obbligatorio) |
-| `--eth N:CD[/MAC]` | Aggiunge un'interfaccia `eth_N_` collegata al [[02_Premessa#collision-domain|collision domain]] `CD`. MAC opzionale nel formato `XX:XX:XX:XX:XX:XX`. N deve essere sequenziale a partire da 0. |
+| `--eth N:CD[/MAC]` | Aggiunge un'interfaccia `eth_N_` collegata al [collision domain](02_Premessa.md#collision-domain) `CD`. MAC opzionale nel formato `XX:XX:XX:XX:XX:XX`. N deve essere sequenziale a partire da 0. |
 | `--mem MEM` | Limita la RAM (es. `128m`, `1g`). Minimo 4m. |
 | `--cpus N` | Limita CPU (float; es. `1.5` su host con 2 CPU). |
-| `-i IMAGE` | Usa un'immagine Docker specifica. Vedi [[04_Struttura_Laboratorio#immagini-docker]]. |
+| `-i IMAGE` | Usa un'immagine Docker specifica. Vedi [04_Struttura_Laboratorio](04_Struttura_Laboratorio.md#immagini-docker). |
 | `-e COMANDO` | Esegue un comando dentro il device durante lo startup. |
 | `--bridged` | Aggiunge un'interfaccia collegata alla rete host via NAT (configurata automaticamente via DHCP). Sarà l'ultima interfaccia. |
 | `--port [HOST:]GUEST[/PROTO]` | Mappa una porta host a una porta del device. Default HOST: 3000, default PROTO: tcp. |
-| `--hosthome` / `--no-hosthome` | Monta (o non monta) la home dell'utente dentro il device in `/hosthome`. Vedi [[05_Condivisione_File]]. |
+| `--hosthome` / `--no-hosthome` | Monta (o non monta) la home dell'utente dentro il device in `/hosthome`. Vedi [05_Condivisione_File](05_Condivisione_File.md). |
 | `--privileged` | Avvia il device in modalità privilegiata (richiede root). |
 | `--noterminals` / `--terminals` | Controlla se aprire o meno finestre terminale. |
 | `--num_terms N` | Numero di terminali da aprire. |
@@ -95,7 +95,7 @@ Aggiunge o rimuove interfacce di rete da un device già avviato. Il numero della
 
 | Opzione | Descrizione |
 |---|---|
-| `--add CD[/MAC]` | Collega il device al [[02_Premessa#collision-domain|collision domain]] `CD` (MAC opzionale). |
+| `--add CD[/MAC]` | Collega il device al [collision domain](02_Premessa.md#collision-domain) `CD` (MAC opzionale). |
 | `--rm CD` | Scollega il device dal collision domain `CD` e rimuove l'interfaccia. |
 
 ```bash
@@ -108,7 +108,7 @@ kathara vconfig -n pc1 --rm X
 
 ## l-comandi (scenari di rete)
 
-Uno **scenario di rete** è una cartella con file di configurazione e sottocartelle per ogni device. Vedi [[04_Struttura_Laboratorio]] per la struttura completa.
+Uno **scenario di rete** è una cartella con file di configurazione e sottocartelle per ogni device. Vedi [04_Struttura_Laboratorio](04_Struttura_Laboratorio.md) per la struttura completa.
 
 ---
 
@@ -128,7 +128,7 @@ Avvia tutti i device dello scenario. Se si specificano dei nomi, avvia solo quel
 | `-o "OPT" ...` | Applica opzioni (stile `lab.conf`) a tutti i device. |
 | `--exclude NOME ...` | Esclude device specifici dall'avvio. |
 | `--hosthome` / `--no-hosthome` | Monta/non monta `/hosthome` nei device. |
-| `--shared` / `--no-shared` | Monta/non monta la cartella `shared/`. Vedi [[05_Condivisione_File]]. |
+| `--shared` / `--no-shared` | Monta/non monta la cartella `shared/`. Vedi [05_Condivisione_File](05_Condivisione_File.md). |
 | `--noterminals` / `--terminals` | Controlla apertura terminali. |
 | `--privileged` | Avvia in modalità privilegiata (richiede root). |
 | `--print` | Dry run: verifica `lab.conf` senza avviare. |
@@ -192,7 +192,7 @@ kathara lconfig -d path/to/scenario -n pc1 --add X/00:00:00:00:00:01
 kathara lconfig -d path/to/scenario -n pc1 --rm X
 ```
 
-> Usato anche per collegare [[08_Wireshark]] ai collision domain dopo l'avvio del lab.
+> Usato anche per collegare [08_Wireshark](08_Wireshark.md) ai collision domain dopo l'avvio del lab.
 
 ---
 

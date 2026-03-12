@@ -1,8 +1,8 @@
 # Struttura di un Laboratorio
 
-← [[01_INDEX]]
+← [01_INDEX](01_INDEX.md)
 
-Uno **scenario di rete** è una cartella che contiene la descrizione completa di una rete virtuale: quali device esistono, come sono collegati, come si configurano all'avvio. Si lancia con `lstart` da dentro quella cartella (o passando il percorso con `-d`). Vedi [[03_Comandi_Kathara#lstart|kathara lstart]].
+Uno **scenario di rete** è una cartella che contiene la descrizione completa di una rete virtuale: quali device esistono, come sono collegati, come si configurano all'avvio. Si lancia con `lstart` da dentro quella cartella (o passando il percorso con `-d`). Vedi [kathara lstart](03_Comandi_Kathara.md#lstart).
 
 ---
 
@@ -27,7 +27,7 @@ mio-laboratorio/
 └── shared.shutdown       ← script eseguito su TUTTI i device dopo il loro .shutdown (opzionale)
 ```
 
-> **Regola delle sottocartelle device:** la cartella `pc1/` viene trattata come se fosse la root `/` del device. Un file in `pc1/etc/resolv.conf` finirà in `/etc/resolv.conf` dentro il container. Vedi anche [[05_Condivisione_File]].
+> **Regola delle sottocartelle device:** la cartella `pc1/` viene trattata come se fosse la root `/` del device. Un file in `pc1/etc/resolv.conf` finirà in `/etc/resolv.conf` dentro il container. Vedi anche [05_Condivisione_File](05_Condivisione_File.md).
 
 ---
 
@@ -53,7 +53,7 @@ Sintassi generale: `device[opzione]=valore`
 
 ### Collegare interfacce a collision domain
 
-Il numero tra parentesi quadre indica l'interfaccia (`eth0`, `eth1`, ...). Il valore è il nome del [[02_Premessa#collision-domain|collision domain]], con MAC opzionale.
+Il numero tra parentesi quadre indica l'interfaccia (`eth0`, `eth1`, ...). Il valore è il nome del [collision domain](02_Premessa.md#collision-domain), con MAC opzionale.
 
 ```
 pc1[0]="A"                        # eth0 di pc1 → collision domain A
@@ -68,7 +68,7 @@ Ogni opzione si scrive come `device[opzione]=valore` e si applica solo al device
 
 | Opzione | Valore | Descrizione |
 |---|---|---|
-| `[image]` | `"nome:tag"` | Immagine Docker da usare. Default: `kathara/base`. Vedi [[04_Struttura_Laboratorio#immagini-docker]]. |
+| `[image]` | `"nome:tag"` | Immagine Docker da usare. Default: `kathara/base`. Vedi [04_Struttura_Laboratorio](04_Struttura_Laboratorio.md#immagini-docker). |
 | `[ipv6]` | `"true"` / `"false"` | Abilita o disabilita IPv6. Default: `"true"`. Disabilitarlo evita il traffico NDP automatico che interferirebbe con scenari dove si vuole osservare il bridge learning passo dopo passo. |
 | `[mem]` | `"128m"`, `"1g"`, ... | Limita la RAM del container. Minimo `4m`. |
 | `[cpus]` | `0.5`, `1.5`, ... | Limita l'uso di CPU (valore float rispetto ai core disponibili). |
@@ -77,7 +77,7 @@ Ogni opzione si scrive come `device[opzione]=valore` e si applica solo al device
 | `[bridged]` | `true` | Aggiunge un'interfaccia NAT verso la rete host, configurata via DHCP. Utile per accesso internet o per esporre servizi. |
 | `[port]` | `"HOST:GUEST/PROTO"` | Mappa una porta host a una porta del device. `PROTO` può essere `tcp` o `udp` (default: `tcp`). |
 | `[num_terms]` | `0`, `1`, `2`, ... | Numero di terminali da aprire all'avvio. `0` non apre nessun terminale. |
-| `[sysctl]` | `"net.X.Y=valore"` | Imposta un parametro sysctl nel namespace `net.`. Usato tipicamente per abilitare il forwarding IP su [[07b_Router_Linux\|router]]. |
+| `[sysctl]` | `"net.X.Y=valore"` | Imposta un parametro sysctl nel namespace `net.`. Usato tipicamente per abilitare il forwarding IP su [router](07b_Router_Linux.md). |
 | `[privileged]` | `"true"` | Avvia il container in modalità privilegiata. Richiede Katharà avviato come root. |
 | `[hosthome]` | `"true"` / `"false"` | Monta la home dell'utente host in `/hosthome` dentro il device. |
 | `[shared]` | `"true"` / `"false"` | Monta la cartella `shared/` in `/shared` dentro il device. |
@@ -112,7 +112,7 @@ pc3: pc2
 
 ## `lab.ext` — reti esterne (avanzato)
 
-Collega un [[02_Premessa#collision-domain|collision domain]] a un'interfaccia fisica dell'host, con supporto VLAN. Solo Linux, solo root. Da usare con cautela.
+Collega un [collision domain](02_Premessa.md#collision-domain) a un'interfaccia fisica dell'host, con supporto VLAN. Solo Linux, solo root. Da usare con cautela.
 
 ```
 # Dominio A sull'interfaccia enp9s0 (no VLAN)
@@ -123,7 +123,7 @@ B enp9s0.20
 C eth1.4001
 ```
 
-> Quando `lab.ext` è presente, i terminali non si aprono automaticamente. Usare [[03_Comandi_Kathara#connect|kathara connect]] per accedere ai device.
+> Quando `lab.ext` è presente, i terminali non si aprono automaticamente. Usare [kathara connect](03_Comandi_Kathara.md#connect) per accedere ai device.
 
 ---
 
@@ -133,9 +133,9 @@ L'immagine standard è `kathara/base`: una macchina Linux minimale con strumenti
 
 | Immagine | Uso tipico | Note |
 |---|---|---|
-| `kathara/base` | PC, [[07b_Router_Linux\|router]], [[07a_Bridge_Linux\|bridge]] | Immagine standard, usata per quasi tutto. |
+| `kathara/base` | PC, [router](07b_Router_Linux.md), [bridge](07a_Bridge_Linux.md) | Immagine standard, usata per quasi tutto. |
 | `kathara/frr` | Routing dinamico (OSPF, BGP, ecc.) | Contiene FRRouting preinstallato. |
-| `lscr.io/linuxserver/wireshark` | Analisi del traffico via browser | Vedi [[08_Wireshark]]. |
+| `lscr.io/linuxserver/wireshark` | Analisi del traffico via browser | Vedi [08_Wireshark](08_Wireshark.md). |
 
 > Il comportamento da router o bridge si ottiene **interamente** tramite i comandi nel file `.startup`, non dall'immagine. `kathara/base` è sufficiente per entrambi.
 
@@ -183,4 +183,4 @@ ip addr add 10.0.0.2/24 dev eth0
 ip route add default via 10.0.0.1
 ```
 
-Per la configurazione dettagliata delle interfacce e del routing, vedi [[06_Comandi_Linux]] e [[07b_Router_Linux]].
+Per la configurazione dettagliata delle interfacce e del routing, vedi [06_Comandi_Linux](06_Comandi_Linux.md) e [07b_Router_Linux](07b_Router_Linux.md).

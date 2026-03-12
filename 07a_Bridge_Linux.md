@@ -1,10 +1,10 @@
 # Bridge Linux
 
-← [[07_Dispositivi_Rete]] | [[01_INDEX]]
+← [07_Dispositivi_Rete](07_Dispositivi_Rete.md) | [01_INDEX](01_INDEX.md)
 
 Un bridge Linux è uno **switch software** che opera a livello 2 (MAC). Quando un device Katharà viene configurato come bridge, intercetta tutto il traffico Ethernet sulle interfacce collegate e lo instrada in base ai MAC address appresi dinamicamente, esattamente come farebbe uno switch hardware.
 
-L'immagine `kathara/base` è sufficiente. Il comportamento da bridge si ottiene interamente tramite i comandi nel file `.startup`. Vedi [[04_Struttura_Laboratorio#immagini-docker]].
+L'immagine `kathara/base` è sufficiente. Il comportamento da bridge si ottiene interamente tramite i comandi nel file `.startup`. Vedi [04_Struttura_Laboratorio](04_Struttura_Laboratorio.md#immagini-docker).
 
 ---
 
@@ -136,7 +136,7 @@ sendp(p, iface='eth0')
 
 > Questo è sufficiente per far apprendere al bridge il MAC sorgente sulla porta corrispondente, anche senza payload IP.
 
-Per catturare il traffico generato e verificare il comportamento del bridge, vedi [[06_Comandi_Linux#tcpdump|tcpdump]] o [[08_Wireshark]].
+Per catturare il traffico generato e verificare il comportamento del bridge, vedi [tcpdump](06_Comandi_Linux.md#tcpdump) o [08_Wireshark](08_Wireshark.md).
 
 ---
 
@@ -148,4 +148,4 @@ Per disabilitare il traffico NDP (IPv6) che potrebbe interferire con l'osservazi
 b1[ipv6]="false"
 ```
 
-Vedi [[04_Struttura_Laboratorio#labconf|lab.conf]] per le altre opzioni disponibili.
+Vedi [lab.conf](04_Struttura_Laboratorio.md#labconf) per le altre opzioni disponibili.

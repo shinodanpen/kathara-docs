@@ -1,6 +1,6 @@
 # Comandi e Configurazione Base dei Device Linux
 
-← [[01_INDEX]]
+← [01_INDEX](01_INDEX.md)
 
 I device Katharà sono container Linux con strumenti di rete preinstallati (`iproute2`, `tcpdump`, `scapy`, ecc.).
 
@@ -66,7 +66,7 @@ ip route del 10.0.0.0/8 via 192.168.1.1
 
 > `ip route add default` e `ip route add 0.0.0.0/0` sono equivalenti.
 
-Per una visualizzazione più leggibile della routing table, vedi [[07b_Router_Linux#routel|routel]].
+Per una visualizzazione più leggibile della routing table, vedi [routel](07b_Router_Linux.md#routel).
 
 ---
 
@@ -143,7 +143,7 @@ tcpdump -i eth0 icmp and host 10.0.0.1   # ICMP da/verso un IP specifico
 
 > **Filtri utili:** `icmp`, `tcp`, `udp`, `arp`, `host IP`, `port N`, `net NETWORK/MASK`. Si possono combinare con `and`, `or`, `not`.
 
-Per un'analisi grafica del traffico, vedi [[08_Wireshark]].
+Per un'analisi grafica del traffico, vedi [08_Wireshark](08_Wireshark.md).
 
 ---
 

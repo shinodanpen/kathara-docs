@@ -1,6 +1,6 @@
 # Wireshark in Katharà
 
-← [[01_INDEX]]
+← [01_INDEX](01_INDEX.md)
 
 Wireshark è un analizzatore di rete (sniffer) che cattura e ispeziona il traffico su un'interfaccia di rete. In Katharà viene eseguito come **device dedicato**, accessibile tramite browser dalla macchina host.
 
@@ -8,7 +8,7 @@ Wireshark è un analizzatore di rete (sniffer) che cattura e ispeziona il traffi
 
 ## Configurazione nel `lab.conf`
 
-Wireshark va dichiarato come un device speciale nel [[04_Struttura_Laboratorio#labconf|lab.conf]] usando un'immagine Docker preconfigurata con interfaccia web:
+Wireshark va dichiarato come un device speciale nel [lab.conf](04_Struttura_Laboratorio.md#labconf) usando un'immagine Docker preconfigurata con interfaccia web:
 
 ```
 wireshark[bridged]=true
@@ -38,7 +38,7 @@ localhost:3000
 
 ## Collegare Wireshark ai collision domain
 
-**Non è possibile** collegare Wireshark ai [[02_Premessa#collision-domain|collision domain]] tramite `lab.conf`: l'opzione `bridged=true` occupa `eth0`, usata per l'interfaccia verso l'host. Le interfacce aggiuntive vanno aggiunte manualmente **dopo** l'avvio del lab, con [[03_Comandi_Kathara#lconfig|lconfig]]:
+**Non è possibile** collegare Wireshark ai [collision domain](02_Premessa.md#collision-domain) tramite `lab.conf`: l'opzione `bridged=true` occupa `eth0`, usata per l'interfaccia verso l'host. Le interfacce aggiuntive vanno aggiunte manualmente **dopo** l'avvio del lab, con [lconfig](03_Comandi_Kathara.md#lconfig):
 
 ```bash
 kathara lconfig -n wireshark --add CD
@@ -65,4 +65,4 @@ Argomenti da trattare:
 - Lettura di frame Ethernet, pacchetti IP, segmenti TCP/UDP
 - Identificare ARP, ICMP, e altri protocolli rilevanti nei lab
 
-Per la cattura testuale da riga di comando vedi [[06_Comandi_Linux#tcpdump|tcpdump]].
+Per la cattura testuale da riga di comando vedi [tcpdump](06_Comandi_Linux.md#tcpdump).
