@@ -2,7 +2,7 @@
 
 ### Device
 
-Un device in Katharà è un container Docker che emula un dispositivo di rete (PC, router, switch, ecc.). Può avere un numero arbitrario di interfacce di rete virtuali (`eth0`, `eth1`, ...).
+Undevice in Katharà è un container Docker che emula un dispositivo di rete (PC, router, switch, ecc.). Può avere un numero arbitrario di interfacce di rete virtuali (`eth0`, `eth1`, ...).
 
 ### Collision Domain (dominio di collisione)
 
