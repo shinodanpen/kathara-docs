@@ -1,12 +1,25 @@
-# premessa: concetti base
+# PREMESSA: CONCETTI BASE
 
 ### Device
 
-Undevice in Katharà è un container Docker che emula un dispositivo di rete (PC, router, switch, ecc.). Può avere un numero arbitrario di interfacce di rete virtuali (`eth0`, `eth1`, ...).
+Un device in Katharà è un container Docker che emula un dispositivo di rete (PC, router, switch, ecc.). Può avere un numero arbitrario di interfacce di rete virtuali (`eth0`, `eth1`, ...).
 
+### Collision Domain (dominio di collisione)
 
+Un collision domain è un segmento di rete virtuale condiviso — l'equivalente virtuale di un cavo o di uno switch a cui colleghi più dispositivi.
 
-# parte 1: comandi e parametri
+In Katharà, ogni collision domain è identificato da un nome (es. `A`, `LAN1`, `net_core`). Tutti i device che hanno un'interfaccia collegata allo stesso collision domain si trovano sulla stessa rete virtuale e possono comunicare tra loro a livello L2, a patto che le interfacce siano configurate con indirizzi IP compatibili.
+
+```
+kathara vstart -n pc1 --eth 0:A
+kathara vstart -n pc2 --eth 0:A
+# pc1 e pc2 sono ora sulla stessa rete virtuale "A"
+# e possono comunicare (dopo aver configurato gli IP)
+```
+
+> **Nota:** Il nome "collision domain" viene dalla terminologia Ethernet classica, dove i dispositivi collegati allo stesso mezzo fisico condividevano il canale e potevano generare collisioni. In Katharà è semplicemente l'etichetta che identifica una rete virtuale.
+
+# PARTE 1: COMANDI E PARAMETRI
 
 ## Kathara – Riferimento Comandi (da man pages ufficiali)
 
@@ -843,7 +856,7 @@ lab/
 
 > Questa modalità è utile per pre-caricare file di configurazione prima dell'avvio, mentre `/shared` è più adatta allo scambio dinamico durante il lab.
 
-# PARTE 5: configurazione e comandi dei dispositivi di rete
+# PARTE 5: CONFIGURAZIONE E COMANDI DEI DISPOSITIVI DI RETE
 
 ## 5.1 Bridge Linux
 
@@ -1088,8 +1101,7 @@ ip route add 200.1.1.0/24 via 10.0.0.2 dev eth1
 
 > Le prime due righe assegnano indirizzi IP alle interfacce (aggiungendo implicitamente le rotte directly connected). La terza aggiunge una rotta statica verso una rete non direttamente connessa, specificando come next-hop l'indirizzo del router adiacente sull'altro lato del link.
 
-# PARTE 6: WIRESHARK in katharà
-
+# PARTE 6: WIRESHARK IN KATHARà
 Wireshark è un analizzatore di rete (sniffer) che cattura e ispeziona il traffico su un'interfaccia di rete. In Katharà viene eseguito come device dedicato, accessibile tramite browser dalla macchina host.
 
 ---
