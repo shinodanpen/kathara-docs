@@ -607,7 +607,8 @@ ip route add default via 192.168.1.1
 ````bash
 ip addr add 10.0.0.2/24 dev eth0
 ip route add default via 10.0.0.1
-```# PARTE 3: comandi e configurazione base dei devices linux
+````
+# PARTE 3: COMANDI E CONFIGURAZIONE BASE DEI DEVICES LINUX
 
 I device Katharà sono container Linux con strumenti di rete preinstallati (`iproute2`).
 
@@ -623,7 +624,6 @@ I device Katharà sono container Linux con strumenti di rete preinstallati (`ipr
 ip addr [show [DEV]]         # mostra indirizzi (tutti, o solo DEV)
 ip addr add IP/MASK dev DEV  # assegna un indirizzo alla interfaccia DEV
 ip addr del IP/MASK dev DEV  # rimuove un indirizzo dalla interfaccia DEV
-````
 
 **Esempi:**
 
