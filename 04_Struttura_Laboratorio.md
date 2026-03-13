@@ -47,7 +47,7 @@ mio-laboratorio/
 
 ---
 
-## `lab.conf` — il file più importante
+## `lab.conf`
 
 Sintassi generale: `device[opzione]=valore`
 
@@ -66,23 +66,23 @@ r1[1]="C/02:42:ac:11:00:02"       # eth1 di r1  → dominio C con MAC specifico
 
 Ogni opzione si scrive come `device[opzione]=valore` e si applica solo al device specificato.
 
-| Opzione | Valore | Descrizione |
-|---|---|---|
-| `[image]` | `"nome:tag"` | Immagine Docker da usare. Default: `kathara/base`. Vedi [04_Struttura_Laboratorio](04_Struttura_Laboratorio.md#immagini-docker). |
-| `[ipv6]` | `"true"` / `"false"` | Abilita o disabilita IPv6. Default: `"true"`. Disabilitarlo evita il traffico NDP automatico che interferirebbe con scenari dove si vuole osservare il bridge learning passo dopo passo. |
-| `[mem]` | `"128m"`, `"1g"`, ... | Limita la RAM del container. Minimo `4m`. |
-| `[cpus]` | `0.5`, `1.5`, ... | Limita l'uso di CPU (valore float rispetto ai core disponibili). |
-| `[shell]` | `"/bin/bash"` | Shell usata per i terminali e per eseguire i file `.startup`. |
-| `[exec]` | `"comando"` | Comando aggiuntivo eseguito durante lo startup, dopo il file `.startup`. |
-| `[bridged]` | `true` | Aggiunge un'interfaccia NAT verso la rete host, configurata via DHCP. Utile per accesso internet o per esporre servizi. |
-| `[port]` | `"HOST:GUEST/PROTO"` | Mappa una porta host a una porta del device. `PROTO` può essere `tcp` o `udp` (default: `tcp`). |
-| `[num_terms]` | `0`, `1`, `2`, ... | Numero di terminali da aprire all'avvio. `0` non apre nessun terminale. |
-| `[sysctl]` | `"net.X.Y=valore"` | Imposta un parametro sysctl nel namespace `net.`. Usato tipicamente per abilitare il forwarding IP su [router](07b_Router_Linux.md). |
-| `[privileged]` | `"true"` | Avvia il container in modalità privilegiata. Richiede Katharà avviato come root. |
-| `[hosthome]` | `"true"` / `"false"` | Monta la home dell'utente host in `/hosthome` dentro il device. |
-| `[shared]` | `"true"` / `"false"` | Monta la cartella `shared/` in `/shared` dentro il device. |
-| `[env]` | `"NOME=VALORE"` | Imposta una variabile d'ambiente nel container. |
-| `[ulimit]` | `"KEY=SOFT[:HARD]"` | Imposta un ulimit. Usa `-1` per illimitato. |
+| Opzione        | Valore                | Descrizione                                                                                                                                                                              |
+| -------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `[image]`      | `"nome:tag"`          | Immagine Docker da usare. Default: `kathara/base`. Vedi [04_Struttura_Laboratorio](04_Struttura_Laboratorio.md#immagini-docker).                                                         |
+| `[ipv6]`       | `"true"` / `"false"`  | Abilita o disabilita IPv6. Default: `"true"`. Disabilitarlo evita il traffico NDP automatico che interferirebbe con scenari dove si vuole osservare il bridge learning passo dopo passo. |
+| `[mem]`        | `"128m"`, `"1g"`, ... | Limita la RAM del container. Minimo `4m`.                                                                                                                                                |
+| `[cpus]`       | `0.5`, `1.5`, ...     | Limita l'uso di CPU (valore float rispetto ai core disponibili).                                                                                                                         |
+| `[shell]`      | `"/bin/bash"`         | Shell usata per i terminali e per eseguire i file `.startup`.                                                                                                                            |
+| `[exec]`       | `"comando"`           | Comando aggiuntivo eseguito durante lo startup, dopo il file `.startup`.                                                                                                                 |
+| `[bridged]`    | `true`                | Aggiunge un'interfaccia NAT verso la rete host, configurata via DHCP. Utile per accesso internet o per esporre servizi.                                                                  |
+| `[port]`       | `"HOST:GUEST/PROTO"`  | Mappa una porta host a una porta del device. `PROTO` può essere `tcp` o `udp` (default: `tcp`).                                                                                          |
+| `[num_terms]`  | `0`, `1`, `2`, ...    | Numero di terminali da aprire all'avvio. `0` non apre nessun terminale.                                                                                                                  |
+| `[sysctl]`     | `"net.X.Y=valore"`    | Imposta un parametro sysctl nel namespace `net.`. Usato tipicamente per abilitare il forwarding IP su [router](07b_Router_Linux.md).                                                     |
+| `[privileged]` | `"true"`              | Avvia il container in modalità privilegiata. Richiede Katharà avviato come root.                                                                                                         |
+| `[hosthome]`   | `"true"` / `"false"`  | Monta la home dell'utente host in `/hosthome` dentro il device.                                                                                                                          |
+| `[shared]`     | `"true"` / `"false"`  | Monta la cartella `shared/` in `/shared` dentro il device.                                                                                                                               |
+| `[env]`        | `"NOME=VALORE"`       | Imposta una variabile d'ambiente nel container.                                                                                                                                          |
+| `[ulimit]`     | `"KEY=SOFT[:HARD]"`   | Imposta un ulimit. Usa `-1` per illimitato.                                                                                                                                              |
 
 ### Metadati dello scenario
 
@@ -127,7 +127,7 @@ C eth1.4001
 
 ---
 
-## Immagini Docker
+## immagini docker
 
 L'immagine standard è `kathara/base`: una macchina Linux minimale con strumenti di rete preinstallati (`iproute2`, `tcpdump`, `ping`, `scapy`, ecc.). Il comportamento del device dipende dai comandi nel `.startup`, non dall'immagine.
 

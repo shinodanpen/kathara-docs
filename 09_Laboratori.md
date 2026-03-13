@@ -8,7 +8,12 @@ Questa sezione raccoglie l'analisi dettagliata dei laboratori proposti nelle sli
 
 ## Laboratori
 
-> *Da completare — in attesa delle slide dei laboratori.*
+| File                          | Titolo                                         | Concetti principali                                                              |
+| ----------------------------- | ---------------------------------------------- | -------------------------------------------------------------------------------- |
+| [Lab 1](09a_Laboratorio_1.md) | Installazione ambiente, primo lab, ping su LAN | Device, collision domain, lab.conf, .startup, ping                               |
+| [Lab 2](09b_Laboratorio_2.md) | One Bridge: bridge learning e flooding         | Bridge learning, FDB, flooding, forwarding selettivo, scapy, Wireshark           |
+| [Lab 3](09c_Laboratorio_3.md) | Basic IPv4, ping, traceroute e ARP             | Indirizzamento IPv4, default gateway, routing statico, ARP cache, traceroute TTL |
+| [Lab 4](09d_Laboratorio_4.md) | Basic IPv6                                     | Indirizzamento IPv6, SLAAC, radvd, ICMPv6, NDP, neighbor cache                   |
 
 ---
 

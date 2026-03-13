@@ -83,7 +83,7 @@ brctl setageing mainbridge 600
 
 ---
 
-## Filtering Database (FDB)
+## filtering database fdb
 
 Il FDB è la tabella che il bridge usa per decidere dove inoltrare i frame Ethernet. Per ogni MAC address apprende su quale porta si trova, così da poter fare **forwarding selettivo** invece di broadcast.
 

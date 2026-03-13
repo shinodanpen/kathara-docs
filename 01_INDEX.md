@@ -30,12 +30,13 @@ Documentazione tecnica per l'utilizzo di Katharà, ottimizzata per consultazione
 
 ## Concetti chiave trasversali
 
-| Concetto | Dove è definito |
-|---|---|
-| Device | [02_Premessa](02_Premessa.md#device) |
-| Collision domain | [02_Premessa](02_Premessa.md#collision-domain) |
-| `lab.conf` | [04_Struttura_Laboratorio](04_Struttura_Laboratorio.md#labconf) |
-| Immagini Docker | [04_Struttura_Laboratorio](04_Struttura_Laboratorio.md#immagini-docker) |
-| FDB | [07a_Bridge_Linux](07a_Bridge_Linux.md#filtering-database-fdb) |
-| ARP | [07b_Router_Linux](07b_Router_Linux.md#arp-nei-router) |
-| Routing table | [06_Comandi_Linux](06_Comandi_Linux.md#routing) |
+| Concetto             | Dove è definito                                                             |
+| -------------------- | --------------------------------------------------------------------------- |
+| Device               | [02_Premessa](02_Premessa.md#device)                                        |
+| Collision domain     | [02_Premessa](02_Premessa.md#collision-domain)                              |
+| `lab.conf`           | [04_Struttura_Laboratorio](04_Struttura_Laboratorio.md#labconf)             |
+| Immagini Docker      | [04_Struttura_Laboratorio](04_Struttura_Laboratorio.md#immagini-docker)     |
+| FDB                  | [07a_Bridge_Linux](07a_Bridge_Linux.md#filtering-database-fdb)              |
+| ARP / NDP            | [07b_Router_Linux](07b_Router_Linux.md#arp-e-neighbor-discovery-nei-router) |
+| Neighbor Cache (NDP) | [06_Comandi_Linux](06_Comandi_Linux.md#neighbor-cache)                      |
+| Routing table        | [06_Comandi_Linux](06_Comandi_Linux.md#routing)                             |

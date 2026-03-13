@@ -13,7 +13,9 @@ I device Katharà sono container Linux con strumenti di rete preinstallati (`ipr
 ### `ip addr` — Gestione indirizzi IP
 
 ```bash
-ip addr [show [DEV]]         # mostra indirizzi (tutti, o solo DEV)
+ip addr [show [DEV]] # mostra indirizzi (tutti, o solo DEV) 
+ip -6 addr [show [DEV]] # mostra solo indirizzi IPv6
+
 ip addr add IP/MASK dev DEV  # assegna un indirizzo all'interfaccia DEV
 ip addr del IP/MASK dev DEV  # rimuove un indirizzo dall'interfaccia DEV
 ```
@@ -24,6 +26,41 @@ ip addr show eth0
 ip addr add 192.168.1.1/24 dev eth0
 ip addr del 192.168.1.1/24 dev eth0
 ```
+
+Per filtrare solo indirizzi IPv6:
+
+```bash
+ip -6 addr          # mostra solo indirizzi IPv6 su tutte le interfacce
+ip -6 addr show eth0
+```
+
+In ambiente IPv6 ogni interfaccia ha almeno due indirizzi: un **link-local** (`fe80::/64`, scope `link`) e un **global unicast** (scope `global`). Il link-local è generato automaticamente dal MAC address secondo il formato EUI-64; il global unicast può essere assegnato staticamente o via SLAAC. Vedi [07b_Router_Linux — IPv6](07b_Router_Linux.md#configurazione-ipv6).
+
+---
+
+### `ip neigh` — Neighbor cache (NDP / ARP)
+
+```bash
+ip neigh             # mostra la neighbor cache (tutti i protocolli)
+ip neigh show dev DEV
+```
+
+In IPv4 la "neighbor cache" corrisponde alla ARP cache. In IPv6 il meccanismo equivalente è il **Neighbor Discovery Protocol (NDP)**, che usa messaggi ICMPv6. Il comando `ip neigh` mostra entrambe le cache:
+
+```
+fe80::200:ff:fe00:c1 dev eth0 lladdr 00:00:00:00:00:c1 router STALE
+2001::3:200:ff:fe00:2 dev eth0 lladdr 00:00:00:00:00:02 REACHABLE
+```
+
+| Colonna | Descrizione |
+|---|---|
+| Indirizzo IP/IPv6 | Indirizzo del vicino |
+| `dev` | Interfaccia |
+| `lladdr` | MAC address corrispondente |
+| `router` | Indica che questo vicino è un router |
+| Stato | `REACHABLE` = recentemente verificato, `STALE` = non verificato di recente, `DELAY` = in attesa di verifica |
+
+> La neighbor cache è bidirezionale: quando A invia una Neighbor Solicitation a B, B apprende automaticamente il MAC address di A nella propria cache.
 
 ---
 
@@ -87,24 +124,35 @@ ping -c 4 192.168.1.1
 ping -c 3 -i 0.5 10.0.0.1
 ```
 
+Con IPv6, il comando `ping` accetta direttamente indirizzi IPv6:
+
+```bash
+ping 2001:0:0:3::2           # ping a indirizzo global unicast
+ping fe80::200:ff:fe00:1     # ping a link-local (richiede specificare l'interfaccia)
+ping -c 3 2001::3:200:ff:fe00:2
+```
+
 ---
 
 ### `traceroute` — Traccia il percorso verso un host
 
 ```bash
-traceroute [-m MAX_HOPS] [-w TIMEOUT] HOST
+traceroute [-m MAX_HOPS] [-w TIMEOUT] [-z MIN_WAIT] HOST
 ```
 
 Mostra tutti i router attraversati per raggiungere HOST, con i relativi tempi di risposta.
 
-| Parametro | Descrizione |
-|---|---|
-| `-m MAX_HOPS` | Numero massimo di hop (default: 30) |
-| `-w TIMEOUT` | Timeout in secondi per ogni risposta (default: 5) |
+| Parametro     | Descrizione                                                                                                                        |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `-m MAX_HOPS` | Numero massimo di hop (default: 30)                                                                                                |
+| `-w TIMEOUT`  | Timeout in secondi per ogni risposta (default: 5)                                                                                  |
+| `-w MINWAIT`  | Tempo minimo tra probe consecutivi, in ms se > 10, altrimenti in secondi (default 0)                                               |
+| `-z MIN_WAIT` | Attesa minima tra probe in secondi se ≤10, in ms se >10 (default: 0). Utile in laboratorio per rendere il risultato più leggibile. |
 
 ```bash
 traceroute 10.0.0.2
 traceroute -m 10 10.0.0.2
+traceroute 2001::1:200:ff:fe00:1 -z 1      # IPv6 con pausa minima di 1 secondo tra probe
 ```
 
 > `* * *` su una riga significa che quel router non ha risposto (potrebbe non supportare ICMP o avere il rate limiting attivo).
@@ -146,7 +194,34 @@ tcpdump -i eth0 icmp and host 10.0.0.1   # ICMP da/verso un IP specifico
 Per un'analisi grafica del traffico, vedi [08_Wireshark](08_Wireshark.md).
 
 ---
+## neighbor cache <a id="neighbor-cache"></a>
 
+### `ip neigh` — Visualizzare la neighbor cache IPv6
+
+```bash
+ip neigh [show [dev DEV]] # mostra la neighbor cache (tutti i vicini, o filtrata per DEV)
+```
+
+In IPv6 il **Neighbor Discovery Protocol (NDP)** sostituisce ARP. La neighbor cache contiene le mappature IPv6 → MAC apprese dinamicamente, incluse le entry dei router. 
+```bash ip neigh ip neigh show dev eth0```
+
+**Esempio di output:**
+
+```bash
+fe80::200:ff:fe00:c1 dev eth0 lladdr 00:00:00:00:00:c1 router STALE fe80::200:ff:fe00:2 dev eth0 lladdr 00:00:00:00:00:02 STALE 2001::3:200:ff:fe00:2 dev eth0 lladdr 00:00:00:00:00:02 REACHABLE
+```
+
+| Campo | Descrizione |
+|---|---|
+| Indirizzo | Indirizzo IPv6 del vicino (globale o link-local) |
+| `dev` | Interfaccia su cui è stata risolta l'entry |
+| `lladdr` | MAC address corrispondente |
+| `router` | Presente se l'entry appartiene a un router |
+| Stato | `REACHABLE` = raggiungibile di recente; `STALE` = entry valida ma non verificata di recente; `DELAY` / `PROBE` = verifica in corso |
+
+> La neighbor cache è l'analogo IPv6 della ARP cache. Come in IPv4, il traffico verso destinazioni **fuori dalla rete locale** causa la risoluzione del MAC del router (non dell'host finale). Vedi [ARP nei router](07b_Router_Linux.md#arp-nei-router) per il comportamento analogo in IPv4.
+
+---
 ## Risoluzione dei nomi
 
 ### `/etc/hosts` — Mappature statiche hostname → IP
@@ -193,12 +268,13 @@ ss -tp                                   # connessioni TCP attive con PID
 
 ## Riepilogo rapido
 
-| Comando | Cosa fa |
-|---|---|
-| `ip addr` | Mostra/gestisce indirizzi IP |
-| `ip link set DEV up/down` | Attiva/disattiva un'interfaccia |
-| `ip route` | Mostra/gestisce la tabella di routing |
-| `ping [-c N] HOST` | Testa la raggiungibilità |
-| `traceroute HOST` | Traccia il percorso verso un host |
-| `tcpdump -i DEV` | Cattura traffico su un'interfaccia |
-| `ss -tuln` | Mostra porte in ascolto |
+| Comando                   | Cosa fa                               |
+| ------------------------- | ------------------------------------- |
+| `ip addr`                 | Mostra/gestisce indirizzi IP          |
+| `ip link set DEV up/down` | Attiva/disattiva un'interfaccia       |
+| `ip route`                | Mostra/gestisce la tabella di routing |
+| `ping [-c N] HOST`        | Testa la raggiungibilità              |
+| `traceroute HOST`         | Traccia il percorso verso un host     |
+| `tcpdump -i DEV`          | Cattura traffico su un'interfaccia    |
+| `ss -tuln`                | Mostra porte in ascolto               |
+| `ip neigh`                | Mostra la neighbor cache IPv6 (NDP)   |
